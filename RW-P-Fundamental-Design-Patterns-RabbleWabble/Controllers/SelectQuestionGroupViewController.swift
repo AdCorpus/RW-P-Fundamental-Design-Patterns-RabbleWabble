@@ -38,7 +38,7 @@ public class SelectQuestionGroupViewController: UIViewController {
   }
   
   // MARK: - Properties
-  public let questionGroups = QuestionGroup.allGroups()
+  let questionGroups = QuestionGroup.allGroups()
   private var selectedQuestionGroup: QuestionGroup!
   
   // MARK: - View Lifecycle  
@@ -52,5 +52,30 @@ public class SelectQuestionGroupViewController: UIViewController {
     for indexPath in selectedIndexPaths {
       tableView.deselectRow(at: indexPath, animated: false)
     }
+  }
+}
+
+extension SelectQuestionGroupViewController: UITableViewDataSource {
+  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionGroupCell", for: indexPath) as! QuestionGroupCell
+    let questionGroup = questionGroups[indexPath.row]
+    cell.textLabel?.text = questionGroup.title
+    return cell
+  }
+  
+  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    questionGroups.count
+  }
+}
+
+extension SelectQuestionGroupViewController: UITableViewDelegate {
+  public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    selectedQuestionGroup = questionGroups[indexPath.row]
+    return indexPath
+  }
+  
+  public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let viewController = segue.destination as? QuestionViewController else { return }
+    viewController.questionGroup = selectedQuestionGroup
   }
 }
