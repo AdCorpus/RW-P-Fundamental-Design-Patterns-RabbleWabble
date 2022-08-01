@@ -29,7 +29,7 @@
 import UIKit
 
 public class SelectQuestionGroupViewController: UIViewController {
-  
+
   // MARK: - Outlets
   @IBOutlet internal var tableView: UITableView! {
     didSet {
@@ -77,5 +77,21 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
   public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let viewController = segue.destination as? QuestionViewController else { return }
     viewController.questionGroup = selectedQuestionGroup
+    viewController.delegate = self
   }
+}
+
+extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
+  func questionViewController(_ viewController: QuestionViewController,
+                              didCancel questionGroup: QuestionGroup,
+                              at questionIndex: Int) {
+    navigationController?.popToViewController(self, animated: true)
+  }
+  
+  func questionViewController(_ viewController: QuestionViewController,
+                              didComplete questionGroup: QuestionGroup) {
+    navigationController?.popToViewController(self, animated: true)
+  }
+  
+  
 }
