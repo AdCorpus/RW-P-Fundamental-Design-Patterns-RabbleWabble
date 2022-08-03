@@ -115,20 +115,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionGroupCell" id="hp9-ER-gve" customClass="QuestionGroupCell" customModule="RabbleWabble" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hp9-ER-gve" id="pEz-l5-NQu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgO-Vq-bp5">
-                                                    <rect key="frame" x="16" y="11" width="309" height="21"/>
+                                                    <rect key="frame" x="16" y="11" width="309" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk1-6g-PL1">
-                                                    <rect key="frame" x="333" y="11" width="26" height="21"/>
+                                                    <rect key="frame" x="333" y="11" width="26" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -152,8 +152,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="NLe-a2-V9n" id="Z0g-UA-xIh"/>
-                                    <outlet property="delegate" destination="NLe-a2-V9n" id="Urf-YL-pDy"/>
+                                    <outlet property="dataSource" destination="NLe-a2-V9n" id="ryL-Y8-TIU"/>
+                                    <outlet property="delegate" destination="NLe-a2-V9n" id="VeD-0n-Wd0"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -166,7 +166,13 @@
                             <constraint firstItem="sfS-cV-o05" firstAttribute="bottom" secondItem="Lr1-mh-TN4" secondAttribute="bottom" id="p14-4s-FsM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select Question Group" id="MEl-So-VuV"/>
+                    <navigationItem key="navigationItem" title="Select Question Group" id="MEl-So-VuV">
+                        <barButtonItem key="leftBarButtonItem" image="ic_settings" id="Ayq-CN-HRs">
+                            <connections>
+                                <segue destination="53s-3j-D1V" kind="show" id="Y5M-zB-HQF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Lr1-mh-TN4" id="zhz-ge-ELU"/>
                     </connections>
@@ -174,6 +180,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="08T-4G-ctJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-103" y="133"/>
+        </scene>
+        <!--App Settings-->
+        <scene sceneID="FkH-m1-IWa">
+            <objects>
+                <tableViewController title="App Settings" id="53s-3j-D1V" customClass="AppSettingsViewController" customModule="RabbleWabble" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fKL-UC-Wwz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="53s-3j-D1V" id="rPq-id-qCL"/>
+                            <outlet property="delegate" destination="53s-3j-D1V" id="DEW-9G-YEe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hfw-Ki-Mg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-103" y="838"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="T75-CO-CXQ">
@@ -197,5 +221,6 @@
     <resources>
         <image name="ic_circle_check" width="80" height="80"/>
         <image name="ic_circle_x" width="80" height="80"/>
+        <image name="ic_settings" width="26" height="26"/>
     </resources>
 </document>

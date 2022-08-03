@@ -29,7 +29,7 @@
 import UIKit
 
 public class SelectQuestionGroupViewController: UIViewController {
-
+  
   // MARK: - Outlets
   @IBOutlet internal var tableView: UITableView! {
     didSet {
@@ -38,10 +38,11 @@ public class SelectQuestionGroupViewController: UIViewController {
   }
   
   // MARK: - Properties
+  private let appSettings = AppSettings.shared
   let questionGroups = QuestionGroup.allGroups()
   private var selectedQuestionGroup: QuestionGroup!
   
-  // MARK: - View Lifecycle  
+  // MARK: - View Lifecycle
   public override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     deselectTableViewCells()
@@ -76,22 +77,19 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
   
   public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let viewController = segue.destination as? QuestionViewController else { return }
-    viewController.questionGroup = selectedQuestionGroup
+    viewController.questionStrategy = appSettings.questionStrategy(for: selectedQuestionGroup)
     viewController.delegate = self
   }
 }
 
 extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
   func questionViewController(_ viewController: QuestionViewController,
-                              didCancel questionGroup: QuestionGroup,
-                              at questionIndex: Int) {
+                              didCancel questionStrategy: QuestionStrategy) {
     navigationController?.popToViewController(self, animated: true)
   }
   
   func questionViewController(_ viewController: QuestionViewController,
-                              didComplete questionGroup: QuestionGroup) {
+                      didComplete questionStrategy: QuestionStrategy) {
     navigationController?.popToViewController(self, animated: true)
   }
-  
-  
 }
