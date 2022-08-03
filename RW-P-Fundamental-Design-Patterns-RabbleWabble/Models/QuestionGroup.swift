@@ -27,7 +27,7 @@
 /// THE SOFTWARE.
 import Foundation
 
-struct QuestionGroup {
+public struct QuestionGroup {
   let questions: [Question]
   let title: String
 }

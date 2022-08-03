@@ -28,7 +28,7 @@
 
 import UIKit
 
-protocol QuestionViewControllerDelegate: class {
+protocol QuestionViewControllerDelegate: AnyObject {
   func questionViewController(_ viewController: QuestionViewController,
                               didCancel questionGroup: QuestionGroup,
                               at questionIndex: Int)

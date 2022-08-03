@@ -26,10 +26,17 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+public protocol QuestionStrategy: AnyObject {
 
-public struct Question {
-  let answer: String
-  let hint: String? 
-  let prompt: String
+  var correctCount: Int { get }
+  var incorrectCount: Int { get }
+  var title: String { get }
+
+  func currentQuestion() -> Question
+  func advanceToNextQuestion() -> Bool
+
+  func markQuestionCorrect(_ question: Question)
+  func markQuestionIncorrect(_ question: Question)
+
+  func questionIndexTitle() -> String
 }
