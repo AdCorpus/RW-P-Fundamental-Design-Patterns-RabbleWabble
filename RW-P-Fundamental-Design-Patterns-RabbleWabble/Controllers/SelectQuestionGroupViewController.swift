@@ -40,14 +40,14 @@ public class SelectQuestionGroupViewController: UIViewController {
   // MARK: - Properties
   private let appSettings = AppSettings.shared
   
-  private let questionGroupeCaretaker = QuestionGroupCaretaker()
+  private let questionGroupCaretaker = QuestionGroupCaretaker()
   private var questionGroups: [QuestionGroup] {
-    return questionGroupeCaretaker.questionGroups
+    return questionGroupCaretaker.questionGroups
   }
   
   private var selectedQuestionGroup: QuestionGroup! {
-    get { return questionGroupeCaretaker.selectedQuestionGroup}
-    set { questionGroupeCaretaker.selectedQuestionGroup = newValue }
+    get { return questionGroupCaretaker.selectedQuestionGroup}
+    set { questionGroupCaretaker.selectedQuestionGroup = newValue }
   }
   
   // MARK: - View Lifecycle
@@ -76,6 +76,13 @@ extension SelectQuestionGroupViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionGroupCell", for: indexPath) as! QuestionGroupCell
     let questionGroup = questionGroups[indexPath.row]
     cell.textLabel?.text = questionGroup.title
+    
+    cell.percentageSubscriber = questionGroup.score.$runningPercentage
+      .receive(on: DispatchQueue.main)
+      .map() {
+        return String(format: "%.0f %%", round(100 * $0))
+      }.assign(to: \.text, on: cell.percentageLabel)
+    
     return cell
   }
   
@@ -92,7 +99,7 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
   
   public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let viewController = segue.destination as? QuestionViewController else { return }
-    viewController.questionStrategy = appSettings.questionStrategy(for: questionGroupeCaretaker)
+    viewController.questionStrategy = appSettings.questionStrategy(for: questionGroupCaretaker)
     viewController.delegate = self
   }
 }
