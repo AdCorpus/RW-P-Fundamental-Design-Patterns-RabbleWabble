@@ -28,7 +28,7 @@
 
 import UIKit
 
-protocol QuestionViewControllerDelegate: AnyObject {
+public protocol QuestionViewControllerDelegate: class {
   func questionViewController(_ viewController: QuestionViewController,
                               didCancel questionStrategy: QuestionStrategy)
   
@@ -37,11 +37,11 @@ protocol QuestionViewControllerDelegate: AnyObject {
 }
 
 public class QuestionViewController: UIViewController {
-  
+
   // MARK: - Instance Properties
-  weak var delegate: QuestionViewControllerDelegate?
-  
-  var questionStrategy: QuestionStrategy! {
+  public weak var delegate: QuestionViewControllerDelegate?
+    
+  public var questionStrategy: QuestionStrategy! {
     didSet {
       navigationItem.title = questionStrategy.title
     }
@@ -68,8 +68,11 @@ public class QuestionViewController: UIViewController {
   private func setupCancelButton() {
     let action = #selector(handleCancelPressed(sender:))
     let image = UIImage(named: "ic_menu")
-    navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: action)
-    
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image: image,
+                                                       landscapeImagePhone: nil,
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: action)
   }
   
   @objc private func handleCancelPressed(sender: UIBarButtonItem) {
@@ -103,7 +106,7 @@ public class QuestionViewController: UIViewController {
   
   @IBAction func handleIncorrect(_ sender: Any) {
     let question = questionStrategy.currentQuestion()
-    questionStrategy.markQuestionCorrect(question)
+    questionStrategy.markQuestionIncorrect(question)
     questionView.incorrectCountLabel.text = String(questionStrategy.incorrectCount)
     showNextQuestion()
   }

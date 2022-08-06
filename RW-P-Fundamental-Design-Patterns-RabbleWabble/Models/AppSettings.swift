@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -26,17 +26,18 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+import Foundation
 
 public class AppSettings {
-  
-  public struct Keys {
+  // MARK: - Keys
+  private struct Keys {
     static let questionStrategy = "questionStrategy"
-    
   }
   
-  static let shared = AppSettings()
+  // MARK: - Static Properties
+  public static let shared = AppSettings()
   
+  // MARK: - Instance Properties
   public var questionStrategyType: QuestionStrategyType {
     get {
       let rawValue = userDefaults.integer(forKey: Keys.questionStrategy)
@@ -47,8 +48,10 @@ public class AppSettings {
   }
   private let userDefaults = UserDefaults.standard
   
-  private init() {}
+  // MARK: - Object Lifecycle
+  private init() { }
   
+  // MARK: - Instance Properties
   public func questionStrategy(for questionGroupCaretaker: QuestionGroupCaretaker) -> QuestionStrategy {
     return questionStrategyType.questionStrategy(for: questionGroupCaretaker)
   }
@@ -60,15 +63,15 @@ public enum QuestionStrategyType: Int, CaseIterable {
   
   public func title() -> String {
     switch self {
-    case .random: return "Random"
-    case .sequential: return "Sequential"
+    case .random:  return "Random"
+    case .sequential:  return "Sequential"
     }
   }
   
   public func questionStrategy(for questionGroupCaretaker: QuestionGroupCaretaker) -> QuestionStrategy {
     switch self {
     case .random: return RandomQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)
-    case .sequential: return SequentialQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)
+    case .sequential:  return SequentialQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)
     }
   }
 }

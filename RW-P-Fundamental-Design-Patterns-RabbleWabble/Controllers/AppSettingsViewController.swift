@@ -56,10 +56,8 @@ extension AppSettingsViewController {
                                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-    
     let questionStrategyType = QuestionStrategyType.allCases[indexPath.row]
     cell.textLabel?.text = questionStrategyType.title()
-    
     if appSettings.questionStrategyType == questionStrategyType {
       cell.accessoryType = .checkmark
     } else {

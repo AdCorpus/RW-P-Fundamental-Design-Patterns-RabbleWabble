@@ -29,9 +29,9 @@
 import UIKit
 
 public class QuestionView: UIView {
-  @IBOutlet var answerLabel: UILabel!
-  @IBOutlet var correctCountLabel: UILabel!
-  @IBOutlet var incorrectCountLabel: UILabel!
-  @IBOutlet var promptLabel: UILabel!
-  @IBOutlet var hintLabel: UILabel!
+  @IBOutlet public var answerLabel: UILabel!
+  @IBOutlet public var correctCountLabel: UILabel!
+  @IBOutlet public var incorrectCountLabel: UILabel!
+  @IBOutlet public var promptLabel: UILabel!
+  @IBOutlet public var hintLabel: UILabel!
 }

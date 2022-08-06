@@ -29,6 +29,7 @@
 import GameplayKit.GKRandomSource
 
 public class RandomQuestionStrategy: BaseQuestionStrategy {
+  
   public convenience init(questionGroupCaretaker: QuestionGroupCaretaker) {
     let questionGroup = questionGroupCaretaker.selectedQuestionGroup!
     let randomSource = GKRandomSource.sharedRandom()

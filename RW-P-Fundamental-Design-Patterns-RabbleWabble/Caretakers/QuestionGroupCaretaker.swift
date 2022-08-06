@@ -1,4 +1,4 @@
-/// Copyright (c) 2022 Razeware LLC
+/// Copyright (c) 2020 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,11 @@ public final class QuestionGroupCaretaker {
   public var questionGroups: [QuestionGroup] = []
   public var selectedQuestionGroup: QuestionGroup!
   
+  // MARK: - Object Lifecycle
   public init() {
     loadQuestionGroups()
   }
-  // MARK: - Object Lifecycle
+  
   private func loadQuestionGroups() {
     if let questionGroups = try? DiskCaretaker.retrieve([QuestionGroup].self, from: fileName) {
       self.questionGroups = questionGroups
@@ -50,7 +51,7 @@ public final class QuestionGroupCaretaker {
     try! save()
   }
   
-  // MARK: Instance Methods
+  // MARK: - Instance Methods
   public func save() throws {
     try DiskCaretaker.save(questionGroups, to: fileName)
   }

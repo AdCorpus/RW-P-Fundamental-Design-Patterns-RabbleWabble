@@ -26,8 +26,8 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
 import Combine
+import UIKit
 
 public class QuestionGroupCell: UITableViewCell {
   @IBOutlet public var titleLabel: UILabel!

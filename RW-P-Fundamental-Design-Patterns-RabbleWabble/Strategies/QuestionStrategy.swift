@@ -26,7 +26,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-public protocol QuestionStrategy: AnyObject {
+public protocol QuestionStrategy: class {
 
   var correctCount: Int { get }
   var incorrectCount: Int { get }
